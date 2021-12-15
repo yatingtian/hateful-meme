@@ -1,0 +1,7 @@
+{
+    "installOptions": {
+        "installFromRepository": true,
+        "libraryPath": "/Users/Placebo/Library/R/3.5/library",
+        "installDependencies": true
+    }
+}

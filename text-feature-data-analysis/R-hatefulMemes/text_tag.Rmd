@@ -1,0 +1,93 @@
+---
+title: "Text Tag"
+author: "Suicide Squre"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: 
+     bookdown::html_document2:
+          toc: true
+          toc_float: true
+          number_sections: true
+          fig_width: 6
+          fig_height: 4
+          fig_caption: true
+          df_print: paged
+          code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, autodep=TRUE,fig.path = 'figures/', fig.pos='center', fig.cap = "")
+rm(list = ls())
+```
+
+```{r library}
+library(tidyverse)
+library(DT)
+library(corrplot)
+```
+
+
+```{r loadData}
+train = read_csv('../../data/train.csv')
+```
+# Data
+```{r table}
+train %>%
+  datatable(
+    rownames = NULL,
+    options = list(
+      scrollY = '600px',
+      scrollX = '600px',
+      columnDefs = list(
+        list(
+          dom = 't',
+          className = 'dt-center',
+          targets = '_all'
+        )
+      )
+    )
+  )
+```
+
+## Variables
+```{r}
+train_b = train %>%
+  dplyr::select(profanity:religion) %>%
+  mutate_all(., function(x) ifelse(is.na(x), 0, 1))
+```
+
+```{r}
+train = train %>% 
+  mutate(profanityB = ifelse(is.na(profanity), 0, 1),
+         nationalityB = ifelse(is.na(nationality), 0, 1),
+         racismB = ifelse(is.na(racism), 0, 1),
+         genderB = ifelse(is.na(gender), 0, 1),
+         disabilityB = ifelse(is.na(disability), 0, 1))
+N = nrow(train)
+
+```
+
+```{r}
+pr_df = train_b %>%
+  summarise_all(., sum) 
+
+pr_df%>%
+  datatable(rownames = NULL)
+```
+
+
+```{r corrplot}
+
+
+mat = train_b %>%
+  dplyr::mutate(label = train$label) %>%
+  as.matrix()
+
+mat_corr = cor(mat)
+corrplot.mixed(mat_corr, order = 'hclust', addrect = 2, tl.cex = 0.7)
+```
+```{r}
+N_bad = apply(train_b, 1, sum)
+table(train$label, N_bad) 
+```
+
+

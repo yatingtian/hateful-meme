@@ -1,0 +1,16 @@
+"0","train = read_csv('../../data/train.csv')
+"
+"2","New names:
+* `` -> ...1
+"
+"1","[1mRows: [22m[34m8500[39m [1mColumns: [22m[34m12[39m
+"
+"1","[36m──[39m [1mColumn specification[22m [36m──────────────────────────────────────────────────────────────────────[39m
+[1mDelimiter:[22m "",""
+[31mchr[39m (10): id, img, text, profanity, nationality, racism, gender, disability, pregnancy, re...
+[32mdbl[39m  (2): ...1, label
+"
+"1","
+[36mℹ[39m Use [38;5;251m[48;5;235m[38;5;251m[48;5;235m`spec()`[48;5;235m[38;5;251m[49m[39m to retrieve the full column specification for this data.
+[36mℹ[39m Specify the column types or set [38;5;251m[48;5;235m[38;5;251m[48;5;235m`show_col_types = FALSE`[48;5;235m[38;5;251m[49m[39m to quiet this message.
+"

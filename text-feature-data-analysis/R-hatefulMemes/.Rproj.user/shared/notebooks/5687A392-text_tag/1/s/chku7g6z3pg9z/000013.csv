@@ -1,0 +1,8 @@
+"0","train = train %>% "
+"0","  mutate(profanityB = ifelse(is.na(profanity), 0, 1),"
+"0","         nationalityB = ifelse(is.na(nationality), 0, 1),"
+"0","         racismB = ifelse(is.na(racism), 0, 1),"
+"0","         genderB = ifelse(is.na(gender), 0, 1),"
+"0","         disabilityB = ifelse(is.na(disability), 0, 1))"
+"0","N = nrow(train)"
+"0",""
